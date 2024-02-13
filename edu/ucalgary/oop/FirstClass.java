@@ -113,6 +113,13 @@ class FamilyRelation{
 
 class ReliefService{
     private String dateOfInquiry;
+
+    public void setDateOfInquiry(String dateOfInquiry) {
+        this.dateOfInquiry = dateOfInquiry;
+    }
+    public String getDateOfInquiry() {
+        return dateOfInquiry;
+    }
 }
 
 class Inquirer{
