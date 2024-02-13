@@ -41,6 +41,19 @@ class MedicalRecord {
         this.treatmentDetails = treatmentDetails;
         this.dateOfTreatment = dateOftreatment;
     }
+    public void setTreatmentDetails(String treatmentDetails) {
+        this.treatmentDetails = treatmentDetails;
+    }
+    public void setdateOfTreament(String dateofTreatment){
+        this.dateOfTreatment = dateofTreatment;
+    }
+
+    public String getDateOfTreatment() {
+        return dateOfTreatment;
+    }
+    public String getTreatmentDetails() {
+        return treatmentDetails;
+    }
 
 
 }
