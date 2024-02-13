@@ -113,6 +113,10 @@ class FamilyRelation{
 
 class ReliefService{
     private String dateOfInquiry;
+    private DisasterVictim missingPerson;
+    private Inquirer inquirer;
+    private String infoProvided;
+    private Location lastKnownLocation; 
 
     public void setDateOfInquiry(String dateOfInquiry) {
         this.dateOfInquiry = dateOfInquiry;
@@ -120,11 +124,58 @@ class ReliefService{
     public String getDateOfInquiry() {
         return dateOfInquiry;
     }
+    public void setInfoProvided(String infoProvided) {
+        this.infoProvided = infoProvided;
+    }
+    public void setMissingPerson(DisasterVictim missingPerson) {
+        this.missingPerson = missingPerson;
+    }
+    public void setInquirer(Inquirer inquirer) {
+        this.inquirer = inquirer;
+    }
+    public void setLastKnownLocation(Location lastKnownLocation) {
+        this.lastKnownLocation = lastKnownLocation;
+    }
+    public String getInfoProvided() {
+        return infoProvided;
+    }
+
+    public Inquirer getInquirer() {
+        return inquirer;
+    }
+    public Location getLastKnownLocation() {
+        return lastKnownLocation;
+    }
+    public DisasterVictim getMissingPerson() {
+        return missingPerson;
+    }
+
 }
 
 class Inquirer{
     private final String FIRST_NAME;
     private final String LAST_NAME;
+    private final String INFO;
+    private final String SERVICES_PHONE;
+
+    Inquirer(String FIRST_NAME, String LAST_NAME, String INFO, String SERVICES_PHONE){
+        this.FIRST_NAME= FIRST_NAME;
+        this.LAST_NAME = LAST_NAME;
+        this.INFO = INFO;
+        this.SERVICES_PHONE = SERVICES_PHONE;
+    }
+    public String getFIRST_NAME() {
+        return FIRST_NAME;
+    }
+    public String getLAST_NAME() {
+        return LAST_NAME;
+    }
+    public String getINFO() {
+        return INFO;
+    }
+    public String getSERVICES_PHONE() {
+        return SERVICES_PHONE;
+    }
 
 }
 
