@@ -28,6 +28,7 @@ class Location{
     public void setSupplies(Supply[] supplies) {
         this.supplies = supplies;
     }
+
     public String getName() {
         return name;
     }
@@ -40,6 +41,7 @@ class Location{
     public Supply[] getSupplies() {
         return supplies;
     }
+
     public void addOccupant(DisasterVictim newVictim) {
         if (occupants == null) {
             // If occupants array is null, initialize it with size 1
@@ -140,6 +142,7 @@ class Supply{
     public void setType(String type) {
         this.type = type;
     }
+
     public int getQuantity() {
         return quantity;
     }
@@ -153,13 +156,18 @@ class DisasterVictim{
     private String lastName;
     private String dateOfBirth;
     private String comments;
-    private int ASSIGNED_SOCIAL_ID;
+    private final int ASSIGNED_SOCIAL_ID;
     private MedicalRecord medicalRecords[];
     private FamilyRelation familyConnections[];
-    private String ENTRY_DATE;
+    private final String ENTRY_DATE;
     private Supply personalBelongings[];
     private String gender;
     private int counter;
+    //constructor
+    public DisasterVictim(String firstName, String ENTRY_DATE) {
+        this.firstName = firstName;
+        this.ENTRY_DATE = ENTRY_DATE;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -296,15 +304,17 @@ class DisasterVictim{
 }
 
 class FamilyRelation{
+    //variables
     private DisasterVictim personOne;
     private String relationshipTo;
     private DisasterVictim personTwo;
-    
+    //constructor
     FamilyRelation(DisasterVictim personOne, String relationshipTo, DisasterVictim personTwo){
         this.personOne = personOne;
         this.personTwo = personTwo;
         this.relationshipTo = relationshipTo;
     }
+    //functions
     public void setPersonOne(DisasterVictim personOne) {
         this.personOne = personOne;
     }
@@ -327,17 +337,23 @@ class FamilyRelation{
 }
 
 class ReliefService{
+    //variables
     private String dateOfInquiry;
     private DisasterVictim missingPerson;
     private Inquirer inquirer;
     private String infoProvided;
     private Location lastKnownLocation; 
-
+    //constructor
+    ReliefService(Inquirer inquirer, DisasterVictim missingPerson, String dateOfInquiry, String infoProvided, Location lastKnownLocation){
+        this.inquirer = inquirer;
+        this.missingPerson = missingPerson;
+        this.dateOfInquiry = dateOfInquiry;
+        this.infoProvided = infoProvided;
+        this.lastKnownLocation = lastKnownLocation;
+    }
+    //functions
     public void setDateOfInquiry(String dateOfInquiry) {
         this.dateOfInquiry = dateOfInquiry;
-    }
-    public String getDateOfInquiry() {
-        return dateOfInquiry;
     }
     public void setInfoProvided(String infoProvided) {
         this.infoProvided = infoProvided;
@@ -351,10 +367,13 @@ class ReliefService{
     public void setLastKnownLocation(Location lastKnownLocation) {
         this.lastKnownLocation = lastKnownLocation;
     }
+
+    public String getDateOfInquiry() {
+        return dateOfInquiry;
+    }
     public String getInfoProvided() {
         return infoProvided;
     }
-
     public Inquirer getInquirer() {
         return inquirer;
     }
@@ -364,50 +383,63 @@ class ReliefService{
     public DisasterVictim getMissingPerson() {
         return missingPerson;
     }
-
+    public String getLogDetails() {
+        String logDetails = "Date of Inquiry: " + dateOfInquiry + "\n" +
+                            "Missing Person: " + missingPerson.getFirstName() + " " + missingPerson.getLastName() + "\n" +
+                            "Inquirer: " + inquirer.getFirstName() + " " + inquirer.getLastName() + "\n" +
+                            "Info Provided: " + infoProvided + "\n" +
+                            "Last Known Location: " + lastKnownLocation.getName() + ", " + lastKnownLocation.getAddress();
+        return logDetails;
+    }
 }
 
 class Inquirer{
+    //variables
     private final String FIRST_NAME;
     private final String LAST_NAME;
     private final String INFO;
     private final String SERVICES_PHONE;
-
+    //constructors
     Inquirer(String FIRST_NAME, String LAST_NAME, String INFO, String SERVICES_PHONE){
-        this.FIRST_NAME= FIRST_NAME;
+        this.FIRST_NAME = FIRST_NAME;
         this.LAST_NAME = LAST_NAME;
         this.INFO = INFO;
         this.SERVICES_PHONE = SERVICES_PHONE;
     }
-    public String getFIRST_NAME() {
+    //functions
+    public String getFirstName() {
         return FIRST_NAME;
     }
-    public String getLAST_NAME() {
+    public String getLastName() {
         return LAST_NAME;
     }
-    public String getINFO() {
+    public String getInfo() {
         return INFO;
     }
-    public String getSERVICES_PHONE() {
+    public String getServicePhone() {
         return SERVICES_PHONE;
     }
-
 }
 
 class MedicalRecord {
+    //variables
     private Location location;
     private String treatmentDetails;
     private String dateOfTreatment;
-
+    //constructor
     public MedicalRecord(Location location, String treatmentDetails, String dateOftreatment){
         this.treatmentDetails = treatmentDetails;
         this.dateOfTreatment = dateOftreatment;
     }
+    //functions
     public void setTreatmentDetails(String treatmentDetails) {
         this.treatmentDetails = treatmentDetails;
     }
-    public void setdateOfTreament(String dateofTreatment){
+    public void setDateOfTreament(String dateofTreatment){
         this.dateOfTreatment = dateofTreatment;
+    }
+    public void setLocation(Location location){
+        this.location = location;
     }
 
     public String getDateOfTreatment() {
@@ -419,6 +451,4 @@ class MedicalRecord {
     public Location getLocation() {
         return location;
     }
-
-
 }
